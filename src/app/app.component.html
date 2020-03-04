@@ -1,1 +1,50 @@
-<h1 class="ui center aligned header">Responsive UI Examples</h1>
+<div class="ui inverted  large top hidden menu">
+  <div class="ui container">
+    <a class="header item">URL Status Checker </a>
+    <div class="right menu">
+      <div class="item">
+        <a (click)="stopPolling()" class="ui inverted red button">Stop</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui  container">
+  <div class="ui three cards">
+    <div
+      *ngFor="let item of urlArray"
+      [ngClass]="{
+        red: item.status === 'Down',
+        green: item.status === 'Active'
+      }"
+      class="raised card"
+    >
+      <div class="content">
+        <div class="header">{{ item.name }}</div>
+        <div class="meta">
+          <span class="category">{{ item.url }}</span>
+        </div>
+        <div class="description">
+          <a class="item">
+            <div class="ui purple horizontal label">Downtime:</div>
+            {{ item.downtime * 5 }} seconds
+          </a>
+        </div>
+      </div>
+      <div class="extra content">
+        <div class="right floated author">
+          Current Status :
+          <i
+            *ngIf="item.status === 'Active'"
+            class="fa fa-check-circle-o"
+            aria-hidden="true"
+          ></i>
+          <i
+            *ngIf="item.status === 'Down'"
+            class="fa fa-times-circle-o"
+            aria-hidden="true"
+          ></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
